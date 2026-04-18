@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  github-runner:
+    image: myoung34/github-runner:2.333.1
+    container_name: github-runner-arm64
+    restart: always
+    environment:
+      - RUNNER_NAME=arm64
+      - RUNNER_SCOPE=repo
+      - REPO_URL=https://github.com/gavinmcnair/ci
+      - LABELS=self-hosted,linux,arm64
+      - ACCESS_TOKEN=${GITHUB_TOKEN}
+      - RUNNER_WORKDIR=/tmp/runner
+      - DOCKER_ENABLED=true
+      - DOCKERHUB_LOGIN=${DOCKERHUB_USERNAME}
+      - DOCKERHUB_PASSWORD=${DOCKERHUB_TOKEN}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - runner-work-arm64:/tmp/runner
+    security_opt:
+      - label:disable
+
+volumes:
+  runner-work-arm64:
