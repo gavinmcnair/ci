@@ -7,8 +7,8 @@ services:
     restart: always
     environment:
       - RUNNER_NAME=arm64
-      - RUNNER_SCOPE=repo
-      - REPO_URL=https://github.com/gavinmcnair/ci
+      - RUNNER_SCOPE=org
+      - ORG_NAME=mcnairstudios
       - LABELS=self-hosted,linux,arm64
       - ACCESS_TOKEN=${GITHUB_TOKEN}
       - RUNNER_WORKDIR=/tmp/runner
